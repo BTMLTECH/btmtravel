@@ -9,74 +9,38 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const WhatWeOffer = () => {
-  // const offerings = [
-  //   {
-  //     title: "Tourism",
-  //     description: "Curated travel experiences to exotic destinations worldwide",
-  //     icon: Globe
-  //   },
-  //   {
-  //     title: "Aviation Consultancy",
-  //     description: "Expert guidance on aviation industry best practices",
-  //     icon: Plane
-  //   },
-  //   {
-  //     title: "Travel Consultations",
-  //     description: "Personalized advice for your perfect journey",
-  //     icon: MessageCircle
-  //   },
-  //   {
-  //     title: "Documentation",
-  //     description: "Complete assistance with travel documents and requirements",
-  //     icon: FileText
-  //   },
-  //   {
-  //     title: "Study Abroad",
-  //     description: "Educational opportunities in prestigious institutions worldwide",
-  //     icon: GraduationCap
-  //   },
-  //   {
-  //     title: "Corporate Travel",
-  //     description: "Streamlined business travel solutions for companies",
-  //     icon: Building2
-  //   }
-  // ];
   const offerings = [
     {
       title: "Tourism",
       description:
         "Curated travel experiences to exotic destinations worldwide",
-      image: "https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg",
+      icon: Globe,
     },
     {
       title: "Aviation Consultancy",
       description: "Expert guidance on aviation industry best practices",
-      image:
-        "https://images.pexels.com/photos/2101/airport-aircraft-airplane-aviation-2101.jpeg",
+      icon: Plane,
     },
     {
       title: "Travel Consultations",
       description: "Personalized advice for your perfect journey",
-      image: "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg",
+      icon: MessageCircle,
     },
     {
       title: "Documentation",
       description: "Complete assistance with travel documents and requirements",
-      image:
-        "https://images.pexels.com/photos/1051077/pexels-photo-1051077.jpeg",
+      icon: FileText,
     },
     {
       title: "Study Abroad",
       description:
         "Educational opportunities in prestigious institutions worldwide",
-      image:
-        "https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg",
+      icon: GraduationCap,
     },
     {
       title: "Corporate Travel",
       description: "Streamlined business travel solutions for companies",
-      image:
-        "https://images.pexels.com/photos/1181401/pexels-photo-1181401.jpeg",
+      icon: Building2,
     },
   ];
 
@@ -98,23 +62,12 @@ const WhatWeOffer = () => {
               key={index}
               className="shadow-card hover:shadow-elevated transition-all duration-300"
             >
-              {/* <CardHeader>
+              <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                   <offering.icon className="w-6 h-6 text-primary" />
                 </div>
                 <CardTitle className="text-xl">{offering.title}</CardTitle>
-              </CardHeader> */}
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                  <img
-                    src={offering.image}
-                    alt={offering.title}
-                    className="w-6 h-6 object-cover"
-                  />
-                </div>
-                <CardTitle className="text-xl">{offering.title}</CardTitle>
               </CardHeader>
-
               <CardContent>
                 <p className="text-muted-foreground">{offering.description}</p>
               </CardContent>
