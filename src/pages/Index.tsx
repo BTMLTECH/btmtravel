@@ -17,7 +17,7 @@ const Index = () => {
       <WhatWeOffer />
       <CategoriesCarousel />
       <FeaturedPackages />
-      <BlogSection />
+      {/* <BlogSection /> */}
       <Newsletter />
       <Footer />
     </div>
