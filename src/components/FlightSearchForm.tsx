@@ -46,7 +46,7 @@ const SearchPanel = () => {
 
   const handleAddRoute = () => {
     const last = routes[routes.length - 1];
-    if (!last.from || !last.to) return; // only add if filled
+    if (!last.from || !last.to) return;
     setRoutes([...routes, { from: "", to: "" }]);
   };
 

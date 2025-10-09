@@ -46,37 +46,6 @@ const HeroSection = () => {
         >
           <div className="max-w-5xl mx-auto bg-card/80 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-border/40">
             <Tabs defaultValue="flight" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-6 rounded-xl bg-background/80 backdrop-blur-md shadow-inner">
-                <TabsTrigger
-                  value="flight"
-                  className="flex items-center justify-center gap-2 font-medium text-sm sm:text-base"
-                >
-                  <Plane className="w-4 h-4" />
-                  <span>Flight</span>
-                </TabsTrigger>
-                <TabsTrigger
-                  value="stays"
-                  className="flex items-center justify-center gap-2 font-medium text-sm sm:text-base"
-                >
-                  <Hotel className="w-4 h-4" />
-                  <span>Stays</span>
-                </TabsTrigger>
-                <TabsTrigger
-                  value="packages"
-                  className="flex items-center justify-center gap-2 font-medium text-sm sm:text-base"
-                >
-                  <Package className="w-4 h-4" />
-                  <span>Packages</span>
-                </TabsTrigger>
-                <TabsTrigger
-                  value="tour"
-                  className="flex items-center justify-center gap-2 font-medium text-sm sm:text-base"
-                >
-                  <Map className="w-4 h-4" />
-                  <span>Tour</span>
-                </TabsTrigger>
-              </TabsList>
-
               <TabsContent value="flight">
                 <FlightSearchForm />
               </TabsContent>

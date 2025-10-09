@@ -138,21 +138,21 @@ const Navbar = () => {
                       </p>
                       <div className="space-y-2">
                         <a
-                          href="tel:+2348012345678"
+                          href="tel:+234201 270 0710"
                           className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
                         >
                           <Phone className="w-4 h-4 text-primary" />
-                          +234 801 234 5678
+                          +234 (0) 201 270 0710
                         </a>
                         <a
-                          href="tel:+2348098765432"
+                          href="tel:+234201 270 2690"
                           className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
                         >
                           <Phone className="w-4 h-4 text-primary" />
-                          +234 809 876 5432
+                          +234 (0) 201 270 2690
                         </a>
                         <a
-                          href="https://wa.me/2348012345678"
+                          href="https://wa.me/08129911922"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
@@ -160,14 +160,7 @@ const Navbar = () => {
                           <MessageCircle className="w-4 h-4 text-green-500" />
                           Chat on WhatsApp
                         </a>
-                        <Link
-                          to="/support"
-                          className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
-                          onClick={() => setShowSupport(false)}
-                        >
-                          <LifeBuoy className="w-4 h-4 text-secondary" />
-                          Customer Support
-                        </Link>
+
                         <Link
                           to="/contact"
                           className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
