@@ -15,7 +15,7 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#f59e0b] to-[#fbbf24] flex items-center justify-center">
                 <Plane className="w-5 h-5 text-background" />
               </div>
-              <h3 className="text-xl font-bold tracking-tight">BTM Holidays</h3>
+              <h3 className="text-xl font-bold tracking-tight">BTM Travels</h3>
             </div>
             <p className="text-background/70 leading-relaxed">
               Your trusted partner for unforgettable travel experiences around
@@ -109,7 +109,7 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="border-t border-background/20 pt-6 text-center text-sm text-background/70">
-          <p>© {new Date().getFullYear()} BTM Holidays. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} BTM Travels. All rights reserved.</p>
           <p className="mt-1 text-background/50 text-xs">
             Designed with passion & precision ✈️ by the BTM Team
           </p>
