@@ -12,22 +12,24 @@ const CategoriesCarousel = () => {
   const categories = [
     {
       title: "Student Visa",
-      description: "Affordable packages and discounts for students traveling abroad",
+      description:
+        "Affordable packages and discounts for students traveling abroad",
       image: studentImage,
-      cta: "Book Now"
+      cta: "Book Now",
     },
     {
       title: "Travel Africa",
-      description: "Discover authentic African culture and breathtaking landscapes",
+      description:
+        "Discover authentic African culture and breathtaking landscapes",
       image: africaImage,
-      cta: "Explore"
+      cta: "Explore",
     },
     {
       title: "Explore Naija",
       description: "Uncover Nigeria's hidden gems and rich heritage",
       image: naijaImage,
-      cta: "Discover"
-    }
+      cta: "Discover",
+    },
   ];
 
   const nextSlide = () => {
@@ -35,15 +37,21 @@ const CategoriesCarousel = () => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + categories.length) % categories.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + categories.length) % categories.length
+    );
   };
 
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Popular Categories</h2>
-          <p className="text-muted-foreground">Discover amazing travel experiences</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Popular Categories
+          </h2>
+          <p className="text-muted-foreground">
+            Discover amazing travel experiences
+          </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
@@ -56,8 +64,12 @@ const CategoriesCarousel = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
               <CardContent className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">{categories[currentIndex].title}</h3>
-                <p className="mb-4 text-white/90">{categories[currentIndex].description}</p>
+                <h3 className="text-2xl font-bold mb-2">
+                  {categories[currentIndex].title}
+                </h3>
+                <p className="mb-4 text-white/90">
+                  {categories[currentIndex].description}
+                </p>
                 <Button variant="default" size="lg">
                   {categories[currentIndex].cta}
                 </Button>
@@ -68,7 +80,9 @@ const CategoriesCarousel = () => {
           <Button
             variant="outline"
             size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white"
+            className="absolute left-4 top-1/2 -translate-y-1/2 font-semibold text-white 
+                                 bg-gradient-to-r from-primary to-secondary 
+                                 shadow-lg shadow-primary/30"
             onClick={prevSlide}
           >
             <ChevronLeft className="w-6 h-6" />
@@ -77,7 +91,9 @@ const CategoriesCarousel = () => {
           <Button
             variant="outline"
             size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white"
+            className="absolute right-4 top-1/2 -translate-y-1/2 font-semibold text-white 
+                                 bg-gradient-to-r from-primary to-secondary 
+                                 shadow-lg shadow-primary/30"
             onClick={nextSlide}
           >
             <ChevronRight className="w-6 h-6" />
@@ -89,7 +105,9 @@ const CategoriesCarousel = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? "bg-primary w-8" : "bg-muted-foreground/30"
+                  index === currentIndex
+                    ? "bg-primary w-8"
+                    : "bg-muted-foreground/30"
                 }`}
               />
             ))}

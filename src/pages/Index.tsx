@@ -7,6 +7,7 @@ import FeaturedPackages from "@/components/FeaturedPackages";
 import BlogSection from "@/components/BlogSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import AdvertCarousel from "@/components/AdvertCarousel";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <ServiceCards />
+      <AdvertCarousel />
       <WhatWeOffer />
       <CategoriesCarousel />
       <FeaturedPackages />

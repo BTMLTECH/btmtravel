@@ -5,19 +5,25 @@
   text-align: center;
 }
 
+/* ========== LOGO ========== */
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  will-change: filter, transform;
+  transition: filter 300ms ease, transform 300ms ease;
 }
 
+.logo:hover {
+  /* Replaced the old blue glow with brand primary color */
+  filter: drop-shadow(0 0 2em hsl(33 94% 51% / 0.6));
+  transform: scale(1.05);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em hsl(37 91% 55% / 0.6));
+}
+
+/* ========== ANIMATIONS ========== */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,10 +39,47 @@
   }
 }
 
+/* ========== CARD STYLING ========== */
 .card {
   padding: 2em;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(43 46% 98%) 100%);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px hsl(33 94% 51% / 0.1),
+              0 2px 4px -2px hsl(33 94% 51% / 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px hsl(33 94% 51% / 0.15),
+              0 8px 10px -6px hsl(33 94% 51% / 0.1);
+}
+
+/* ========== BUTTON STYLING ========== */
+button,
+a.button {
+  background: linear-gradient(135deg, hsl(33 94% 51%) 0%, hsl(37 91% 55%) 100%);
+  color: hsl(0 0% 100%);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+button:hover,
+a.button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px hsl(33 94% 51% / 0.25);
+}
+
+/* ========== TEXT ========== */
 .read-the-docs {
-  color: #888;
+  color: hsl(215 16% 47%);
+}
+
+/* ========== SMOOTH THEME TRANSITION ========== */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
