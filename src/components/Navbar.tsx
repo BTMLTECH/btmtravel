@@ -152,7 +152,7 @@ const Navbar = () => {
                           +234 (0) 201 270 2690
                         </a>
                         <a
-                          href="https://wa.me/08129911922"
+                          href="https://wa.me/+2348129911922"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
