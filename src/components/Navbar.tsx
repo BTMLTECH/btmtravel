@@ -79,7 +79,7 @@ const Navbar = () => {
               <Plane className="w-5 h-5 text-primary-foreground" />
             </motion.div>
             <span className="text-xl font-bold text-foreground tracking-tight">
-              BTM Travels
+              BTM Travel
             </span>
           </Link>
 
