@@ -1,38 +1,61 @@
 import { motion } from "framer-motion";
-import { Plane, Hotel, Package, Map } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Tabs, TabsContent } from "./ui/tabs";
 import FlightSearchForm from "./FlightSearchForm";
 import heroImage from "@/assets/hero-beach.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background/60 to-muted">
+    <section
+      className="
+        relative min-h-[100vh]
+        flex items-center justify-center
+        overflow-hidden
+        bg-gradient-to-b from-background via-background/60 to-muted
+        pt-24 md:pt-0
+      "
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Luxury travel destination"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/95 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/95 backdrop-blur-[3px]" />
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-4 py-16 text-center">
+      <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 text-center">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-4 tracking-tight">
-            <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x">
+          <h1
+            className="
+              text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight mb-3 md:mb-4 tracking-tight
+            "
+          >
+            <span
+              className="
+                block bg-clip-text text-transparent
+                bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x
+              "
+            >
               Everything Travel
             </span>
-            <span className="text-foreground/90 block mt-2">Book BTM</span>
+            <span className="text-foreground/90 block mt-1 md:mt-2">
+              Book BTM
+            </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground/90 mt-3 font-light max-w-2xl mx-auto">
+          <p
+            className="
+              text-base sm:text-lg md:text-xl text-muted-foreground/90 mt-4 font-light
+              max-w-xl sm:max-w-2xl mx-auto
+            "
+          >
             Discover. Book. Experience. — Flights, Tours & Stays that move you.
           </p>
         </motion.div>
@@ -42,16 +65,23 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-12"
+          className="mt-10 sm:mt-12"
         >
-          <div className="max-w-5xl mx-auto bg-card/80 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-border/40">
+          <div
+            className="
+              max-w-md sm:max-w-4xl mx-auto
+              bg-card/90 backdrop-blur-xl
+              rounded-2xl shadow-xl p-4 sm:p-6
+              border border-border/30
+            "
+          >
             <Tabs defaultValue="flight" className="w-full">
               <TabsContent value="flight">
                 <FlightSearchForm />
               </TabsContent>
 
               <TabsContent value="stays">
-                <div className="bg-card p-8 rounded-lg shadow-card text-center">
+                <div className="bg-card p-6 sm:p-8 rounded-lg shadow-card text-center">
                   <p className="text-muted-foreground">
                     Stays booking coming soon...
                   </p>
@@ -59,7 +89,7 @@ const HeroSection = () => {
               </TabsContent>
 
               <TabsContent value="packages">
-                <div className="bg-card p-8 rounded-lg shadow-card text-center">
+                <div className="bg-card p-6 sm:p-8 rounded-lg shadow-card text-center">
                   <p className="text-muted-foreground">
                     Package booking coming soon...
                   </p>
@@ -67,7 +97,7 @@ const HeroSection = () => {
               </TabsContent>
 
               <TabsContent value="tour">
-                <div className="bg-card p-8 rounded-lg shadow-card text-center">
+                <div className="bg-card p-6 sm:p-8 rounded-lg shadow-card text-center">
                   <p className="text-muted-foreground">
                     Tour booking coming soon...
                   </p>
