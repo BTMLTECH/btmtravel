@@ -5,13 +5,13 @@ import journeyeasy from "@/assets/journeyeasy.png";
 import market from "@/assets/market-place.png";
 
 const ServiceShowcase = () => {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   const services = [
     {
       id: 1,
       title: "Adventures",
-      description: "The easiest way to book your next trip!.",
+      description: "The easiest way to book your next trip!",
       image: btmholidays,
       link: "https://tours.btmholidays.com/",
     },
@@ -19,7 +19,7 @@ const ServiceShowcase = () => {
       id: 2,
       title: "Wholesales",
       description:
-        "Travel and Earn with the BTM Travel Club JourneyEasy™! Collect points, grow your travel family & get amazing discounts and promo’s.",
+        "Travel and Earn with the BTM Travel Club JourneyEasy™! Collect points, grow your travel family & get amazing discounts and promos.",
       image: journeyeasy,
       link: "https://www.journeyeasy.net/",
     },
@@ -27,18 +27,20 @@ const ServiceShowcase = () => {
       id: 3,
       title: "Sell your tours",
       description:
-        "Sell Your Travel Products and Packages! We are looking for creative mins and tour guides with unique tours and experiences across the African continent.",
+        "Sell Your Travel Products and Packages! We are looking for creative minds and tour guides with unique tours and experiences across Africa.",
       image: market,
       link: "https://marketplace.btmlimited.net/",
     },
   ];
 
   return (
-    <section className="relative w-full py-20 bg-muted/20 overflow-hidden">
+    <section className="relative w-full py-16 bg-muted/20 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="relative flex flex-col md:flex-row gap-4 h-[420px] overflow-hidden">
+        {/* Wrapper adjusts layout based on screen size */}
+        <div className="flex flex-col md:flex-row gap-6 md:h-[420px]">
           {services.map((service) => {
             const isActive = hovered === service.id;
+
             return (
               <motion.div
                 key={service.id}
@@ -59,7 +61,7 @@ const ServiceShowcase = () => {
                   mass: 0.6,
                 }}
               >
-                {/* Background Image */}
+                {/* Background image */}
                 <motion.div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${service.image})` }}
@@ -68,57 +70,69 @@ const ServiceShowcase = () => {
                 />
 
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent md:to-transparent" />
 
-                {/* Title always visible */}
-                <div className="absolute bottom-6 left-6 z-10 text-white pointer-events-none">
-                  <h2 className="text-2xl md:text-3xl font-bold drop-shadow-lg">
-                    {service.title}
-                  </h2>
-                </div>
-
-                {/* Hover content */}
-                <motion.div
-                  className="absolute inset-0 flex flex-col justify-center items-center text-center p-6 bg-black/60 backdrop-blur-sm"
-                  initial={false}
-                  animate={{
-                    opacity: isActive ? 1 : 0,
-                    y: isActive ? 0 : 30,
-                    pointerEvents: isActive ? "auto" : "none",
-                  }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                >
-                  <h3 className="text-3xl md:text-4xl font-semibold text-white mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-200 mb-6 max-w-md">
-                    {service.description}
-                  </p>
-                  <a
-                    href={service.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      className="px-8 py-3 rounded-full font-semibold text-white 
-                                 bg-gradient-to-r from-primary to-secondary 
-                                 shadow-lg shadow-primary/30 transition-all duration-300"
+                {/* ---- TEXT CONTENT ---- */}
+                <div className="relative z-10 flex flex-col justify-start md:justify-end text-white p-6 md:p-8 h-full">
+                  {/* On mobile, show title + description at the top */}
+                  <div className="md:hidden mb-4">
+                    <h2 className="text-2xl font-bold mb-2">{service.title}</h2>
+                    <p className="text-sm text-gray-200 mb-4">
+                      {service.description}
+                    </p>
+                    <a
+                      href={service.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      Explore Now
-                    </motion.button>
-                  </a>
-                </motion.div>
+                      <motion.button
+                        whileTap={{ scale: 0.97 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="px-6 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-secondary shadow-lg shadow-primary/30"
+                      >
+                        Explore Now
+                      </motion.button>
+                    </a>
+                  </div>
 
-                {/* Optional subtle shadow on hover for depth */}
-                {isActive && (
+                  {/* Desktop-only bottom title */}
+                  <div className="absolute bottom-6 left-6 hidden md:block">
+                    <h2 className="text-3xl font-bold drop-shadow-lg">
+                      {service.title}
+                    </h2>
+                  </div>
+
+                  {/* Desktop hover overlay */}
                   <motion.div
-                    className="absolute inset-0 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
+                    className="absolute inset-0 hidden md:flex flex-col justify-center items-center text-center p-6 bg-black/60 backdrop-blur-sm"
+                    initial={false}
+                    animate={{
+                      opacity: isActive ? 1 : 0,
+                      y: isActive ? 0 : 30,
+                      pointerEvents: isActive ? "auto" : "none",
+                    }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                  >
+                    <h3 className="text-3xl md:text-4xl font-semibold text-white mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-200 mb-6 max-w-md">
+                      {service.description}
+                    </p>
+                    <a
+                      href={service.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        className="px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-secondary shadow-lg shadow-primary/30 transition-all duration-300"
+                      >
+                        Explore Now
+                      </motion.button>
+                    </a>
+                  </motion.div>
+                </div>
               </motion.div>
             );
           })}

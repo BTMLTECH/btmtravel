@@ -8,6 +8,7 @@ import BlogSection from "@/components/BlogSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import AdvertCarousel from "@/components/AdvertCarousel";
+import DownloadAppSection from "@/components/DownloadAppSection";
 
 const Index = () => {
   return (
@@ -19,7 +20,8 @@ const Index = () => {
       <WhatWeOffer />
       <CategoriesCarousel />
       <FeaturedPackages />
-      {/* <BlogSection /> */}
+      {/* <DownloadAppSection /> */}
+      <BlogSection />
       <Newsletter />
       <Footer />
     </div>
