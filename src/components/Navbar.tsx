@@ -20,7 +20,6 @@ const Navbar = () => {
   const [showSupport, setShowSupport] = useState(false);
   const dropdownRef = useRef(null);
 
-  // 🔹 Cache active route
   useEffect(() => {
     const saved = localStorage.getItem("btm_active_nav");
     if (saved) setActive(saved);
@@ -31,7 +30,6 @@ const Navbar = () => {
     localStorage.setItem("btm_active_nav", location.pathname);
   }, [location]);
 
-  // 🔹 Detect scroll for slick navbar behavior
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -40,7 +38,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔹 Close support dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -60,11 +57,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b 
-      ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-lg shadow-md"
-          : "bg-transparent backdrop-blur-sm"
+          ? "bg-white/95 border-primary/10 backdrop-blur-0"
+          : "bg-transparent border-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -72,11 +68,11 @@ const Navbar = () => {
           {/* 🔹 Logo */}
           <Link to="/" className="flex items-center gap-2">
             <motion.div
-              className="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center"
+              className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center"
               whileHover={{ rotate: 10 }}
               transition={{ type: "spring", stiffness: 250, damping: 15 }}
             >
-              <Plane className="w-5 h-5 text-primary-foreground" />
+              <Plane className="w-5 h-5 text-white" />
             </motion.div>
             <span className="text-xl font-bold text-foreground tracking-tight">
               BTM Travel
@@ -89,8 +85,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative font-medium transition-colors 
-                ${
+                className={`relative font-medium transition-colors ${
                   active === link.path
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
@@ -130,46 +125,43 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.25 }}
-                    className="absolute right-0 mt-3 w-60 bg-card border border-border/40 shadow-xl rounded-xl overflow-hidden z-50"
+                    className="absolute right-0 mt-3 w-60 bg-white border border-primary/10 rounded-xl p-3 shadow-none"
                   >
-                    <div className="p-3 text-sm">
-                      <p className="font-semibold text-foreground mb-2">
-                        Need Help?
-                      </p>
-                      <div className="space-y-2">
-                        <a
-                          href="tel:+234201 270 0710"
-                          className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
-                        >
-                          <Phone className="w-4 h-4 text-primary" />
-                          +234 (0) 201 270 0710
-                        </a>
-                        <a
-                          href="tel:+234201 270 2690"
-                          className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
-                        >
-                          <Phone className="w-4 h-4 text-primary" />
-                          +234 (0) 201 270 2690
-                        </a>
-                        <a
-                          href="https://wa.me/+2348129911922"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
-                        >
-                          <MessageCircle className="w-4 h-4 text-green-500" />
-                          Chat on WhatsApp
-                        </a>
-
-                        <Link
-                          to="/contact"
-                          className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/30 transition-colors"
-                          onClick={() => setShowSupport(false)}
-                        >
-                          <Headphones className="w-4 h-4 text-primary" />
-                          Contact Us
-                        </Link>
-                      </div>
+                    <p className="font-semibold text-foreground mb-2 text-sm">
+                      Need Help?
+                    </p>
+                    <div className="space-y-2 text-sm">
+                      <a
+                        href="tel:+2342012700710"
+                        className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 transition"
+                      >
+                        <Phone className="w-4 h-4 text-primary" />
+                        +234 (0) 201 270 0710
+                      </a>
+                      <a
+                        href="tel:+2342012702690"
+                        className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 transition"
+                      >
+                        <Phone className="w-4 h-4 text-primary" />
+                        +234 (0) 201 270 2690
+                      </a>
+                      <a
+                        href="https://wa.me/+2348129911922"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 transition"
+                      >
+                        <MessageCircle className="w-4 h-4 text-green-500" />
+                        Chat on WhatsApp
+                      </a>
+                      <Link
+                        to="/contact"
+                        className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 transition"
+                        onClick={() => setShowSupport(false)}
+                      >
+                        <Headphones className="w-4 h-4 text-primary" />
+                        Contact Us
+                      </Link>
                     </div>
                   </motion.div>
                 )}
@@ -186,7 +178,7 @@ const Navbar = () => {
             </Button>
 
             <Button
-              className="bg-gradient-to-r from-primary to-secondary text-white shadow-md hover:shadow-lg"
+              className="bg-gradient-to-r from-primary to-secondary text-white hover:opacity-90 transition-all"
               asChild
             >
               <Link to="/book">Book Now</Link>
@@ -215,15 +207,14 @@ const Navbar = () => {
             closed: { height: 0, opacity: 0 },
           }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="overflow-hidden md:hidden flex flex-col gap-4 py-4 border-t border-border"
+          className="overflow-hidden md:hidden flex flex-col gap-4 py-4 border-t border-primary/10 bg-white/95"
         >
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
               onClick={() => setMenuOpen(false)}
-              className={`relative font-medium text-center py-2 transition-colors 
-              ${
+              className={`relative font-medium text-center py-2 transition-colors ${
                 active === link.path
                   ? "text-primary"
                   : "text-foreground hover:text-primary"
@@ -248,11 +239,11 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
-                  className="mt-2 mx-auto w-64 bg-card border border-border/40 rounded-xl shadow-md text-left p-3 text-sm"
+                  className="mt-2 mx-auto w-64 bg-white border border-primary/10 rounded-xl text-left p-3 text-sm"
                 >
                   <a
                     href="tel:+2348012345678"
-                    className="flex items-center gap-2 p-2 hover:bg-muted/30 rounded-lg"
+                    className="flex items-center gap-2 p-2 hover:bg-primary/5 rounded-lg"
                   >
                     <Phone className="w-4 h-4 text-primary" /> +234 801 234 5678
                   </a>
@@ -260,15 +251,15 @@ const Navbar = () => {
                     href="https://wa.me/2348012345678"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 p-2 hover:bg-muted/30 rounded-lg"
+                    className="flex items-center gap-2 p-2 hover:bg-primary/5 rounded-lg"
                   >
-                    <MessageCircle className="w-4 h-4 text-green-500" />{" "}
+                    <MessageCircle className="w-4 h-4 text-green-500" />
                     WhatsApp
                   </a>
                   <Link
                     to="/support"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-2 p-2 hover:bg-muted/30 rounded-lg"
+                    className="flex items-center gap-2 p-2 hover:bg-primary/5 rounded-lg"
                   >
                     <LifeBuoy className="w-4 h-4 text-secondary" /> Customer
                     Support
@@ -276,7 +267,7 @@ const Navbar = () => {
                   <Link
                     to="/contact"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-2 p-2 hover:bg-muted/30 rounded-lg"
+                    className="flex items-center gap-2 p-2 hover:bg-primary/5 rounded-lg"
                   >
                     <Headphones className="w-4 h-4 text-primary" /> Contact Us
                   </Link>
@@ -294,7 +285,7 @@ const Navbar = () => {
               <Link to="/auth">Sign In</Link>
             </Button>
             <Button
-              className="bg-gradient-to-r from-primary to-secondary text-white"
+              className="bg-gradient-to-r from-primary to-secondary text-white hover:opacity-90 transition-all"
               asChild
             >
               <Link to="/book">Book Now</Link>

@@ -88,29 +88,32 @@ const SearchPanel = () => {
     routes[routes.length - 1].to.trim() !== "";
 
   return (
-    <div className="bg-card p-4 sm:p-6 rounded-2xl shadow-xl border border-border/40 relative">
+    <div className="bg-white p-4 sm:p-6 rounded-2xl border border-primary/10 transition-all">
       <Tabs value={tab} onValueChange={setTab} className="w-full">
         {/* Tabs Header */}
-        <TabsList className="grid grid-cols-2 sm:grid-cols-4 bg-muted mb-6 rounded-xl">
+        <TabsList className="grid grid-cols-2 sm:grid-cols-4 bg-gray-100 mb-6 rounded-xl">
           <TabsTrigger
             value="flights"
-            className="flex items-center gap-1 sm:gap-2 text-sm"
+            className="flex items-center gap-1 sm:gap-2 text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white rounded-lg"
           >
             <Plane className="w-4 h-4" /> Flights
           </TabsTrigger>
           <TabsTrigger
             value="hotels"
-            className="flex items-center gap-1 sm:gap-2 text-sm"
+            className="flex items-center gap-1 sm:gap-2 text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white rounded-lg"
           >
             <Hotel className="w-4 h-4" /> Hotels
           </TabsTrigger>
           <TabsTrigger
             value="tours"
-            className="flex items-center gap-1 sm:gap-2 text-sm"
+            className="flex items-center gap-1 sm:gap-2 text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white rounded-lg"
           >
             <Compass className="w-4 h-4" /> Tours
           </TabsTrigger>
-          <TabsTrigger value="packages" className="text-sm">
+          <TabsTrigger
+            value="packages"
+            className="text-sm data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white rounded-lg"
+          >
             Packages
           </TabsTrigger>
         </TabsList>
@@ -143,17 +146,13 @@ const SearchPanel = () => {
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    className="h-9 justify-between w-full sm:w-[140px] text-sm"
+                    className="h-9 justify-between w-full sm:w-[140px] text-sm border-primary/30 hover:border-primary/70"
                   >
                     {cabinClass.charAt(0).toUpperCase() + cabinClass.slice(1)}
                     <ChevronDown className="w-4 h-4" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent
-                  align="end"
-                  sideOffset={4}
-                  className="w-44 p-2 z-50"
-                >
+                <PopoverContent align="end" sideOffset={4} className="w-44 p-2">
                   {["economy", "premium", "business", "first"].map((cls) => (
                     <Button
                       key={cls}
@@ -170,12 +169,12 @@ const SearchPanel = () => {
                 </PopoverContent>
               </Popover>
 
-              {/* Passenger Dropdown — fully mobile-safe */}
+              {/* Passenger Dropdown */}
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    className="h-9 justify-between w-full sm:w-[160px] text-sm"
+                    className="h-9 justify-between w-full sm:w-[160px] text-sm border-primary/30 hover:border-primary/70"
                   >
                     <Users className="w-4 h-4 mr-2" />
                     {adults + children + infants} Passenger
@@ -183,11 +182,7 @@ const SearchPanel = () => {
                     <ChevronDown className="w-4 h-4 ml-2" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent
-                  className="max-w-[95vw] sm:max-w-sm w-[90vw] sm:w-72 p-4 rounded-xl shadow-xl border bg-popover z-50"
-                  sideOffset={6}
-                  align="center"
-                >
+                <PopoverContent className="w-72 p-4 rounded-xl border border-primary/10 bg-white">
                   {[
                     ["Adults (12+)", adults, setAdults, 1],
                     ["Children (2-11)", children, setChildren, 0],
@@ -238,13 +233,11 @@ const SearchPanel = () => {
                   opacity: 1,
                   y: 0,
                   boxShadow:
-                    glowIndex === i
-                      ? "0 0 12px rgba(56,189,248,0.5)"
-                      : "0 0 0 rgba(0,0,0,0)",
+                    glowIndex === i ? "0 0 10px rgba(56,189,248,0.4)" : "none",
                 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.35 }}
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 relative p-3 rounded-xl border border-border/30"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 relative p-3 rounded-xl border border-primary/10"
               >
                 <div>
                   <Label>From</Label>
@@ -258,7 +251,6 @@ const SearchPanel = () => {
                   />
                 </div>
 
-                {/* Swap button centered on mobile */}
                 <div className="flex justify-center sm:hidden">
                   <motion.div
                     animate={{
@@ -271,7 +263,7 @@ const SearchPanel = () => {
                       variant="ghost"
                       size="icon"
                       onClick={() => handleSwap(i)}
-                      className="rounded-full shadow-md bg-gradient-to-r from-primary to-secondary text-white"
+                      className="rounded-full bg-gradient-to-r from-primary to-secondary text-white"
                     >
                       <ArrowLeftRight className="w-4 h-4" />
                     </Button>
@@ -334,13 +326,15 @@ const SearchPanel = () => {
             <Button
               onClick={handleSearch}
               size="lg"
-              className="bg-gradient-to-r from-primary to-secondary text-white rounded-full px-6 sm:px-8 h-10 w-full sm:w-auto"
+              className="bg-gradient-to-r from-primary to-secondary text-white rounded-full px-6 sm:px-8 h-10 w-full sm:w-auto hover:scale-105 transition-all"
             >
               Search Flights
             </Button>
           </div>
         </TabsContent>
 
+        {/* 🏨 Hotels, 🧭 Tours, 🎁 Packages kept unchanged — all use your brand gradient */}
+        {/* (retain same layout and colors as your original) */}
         {/* 🏨 Hotels */}
         <TabsContent value="hotels">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-end">

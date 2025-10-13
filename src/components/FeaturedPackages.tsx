@@ -81,72 +81,66 @@ const FeaturedPackages = () => {
     : packages.slice(currentIndex, currentIndex + itemsPerPage);
 
   return (
-    <section className="py-20 bg-muted/30 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
+      {/* Ambient glow for Apple depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.5),transparent_70%)] pointer-events-none" />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-3 text-gray-900 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
             Featured Packages
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
             Handpicked experiences curated for unforgettable journeys
           </p>
         </motion.div>
 
-        {/* Packages */}
+        {/* Cards */}
         <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex + (showAll ? "-all" : "")}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -25 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.5 }}
               className="grid grid-cols-1 md:grid-cols-3 gap-8"
             >
               {visiblePackages.map((pkg, i) => (
                 <motion.div
                   key={pkg.title}
-                  initial={{ opacity: 0, y: 25 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: i * 0.1,
-                    duration: 0.4,
-                    ease: "easeOut",
-                  }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.03 }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                 >
-                  <Card className="group relative rounded-2xl overflow-hidden shadow-md border-0 bg-background hover:shadow-xl transition-all duration-500">
-                    {/* Background Image */}
-                    <div className="relative h-56 overflow-hidden">
+                  <Card className="relative rounded-3xl border border-white/40 bg-white/60 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500">
+                    {/* Image */}
+                    <div className="relative h-56 md:h-64 overflow-hidden rounded-t-3xl">
                       <motion.img
                         src={pkg.image}
                         alt={pkg.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 will-change-transform"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-                      <Badge className="absolute top-4 right-4 bg-white/90 text-foreground flex items-center gap-1 shadow-md">
-                        <Star className="w-4 h-4 fill-primary text-primary" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+                      <Badge className="absolute top-4 right-4 bg-white/80 text-gray-900 font-semibold shadow-sm backdrop-blur-sm">
+                        <Star className="w-4 h-4 text-yellow-500 fill-yellow-400" />{" "}
                         {pkg.rating}
                       </Badge>
                     </div>
 
-                    {/* Card Content */}
                     <CardContent className="p-6 space-y-3">
-                      <h3 className="text-xl font-bold text-foreground line-clamp-2">
+                      <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">
                         {pkg.title}
                       </h3>
-                      <div className="space-y-1 text-sm text-muted-foreground">
+                      <div className="space-y-1 text-sm text-gray-600">
                         <div className="flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-primary" />
                           {pkg.location}
@@ -155,25 +149,31 @@ const FeaturedPackages = () => {
                           <Calendar className="w-4 h-4 text-secondary" />
                           {pkg.duration}
                         </div>
-                        <div className="text-xs">{pkg.reviews} reviews</div>
+                        <div className="text-xs opacity-70">
+                          {pkg.reviews} reviews
+                        </div>
                       </div>
                     </CardContent>
 
-                    {/* Footer */}
-                    <CardFooter className="flex items-center justify-between px-6 pb-5">
+                    <CardFooter className="flex items-center justify-between px-6 pb-6">
                       <div>
-                        <span className="text-sm text-muted-foreground block">
+                        <span className="text-xs text-gray-500 block">
                           Starting from
                         </span>
-                        <span className="text-2xl font-bold text-primary">
+                        <span className="text-xl font-bold text-gray-900">
                           {pkg.price}
                         </span>
                       </div>
+
+                      {/* Glass gradient button */}
                       <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        className="px-4 py-2 rounded-full text-white font-semibold
-                          bg-gradient-to-r from-primary to-secondary 
-                          shadow-md hover:shadow-xl transition-all duration-300"
+                        whileHover={{ scale: 1.06 }}
+                        whileTap={{ scale: 0.96 }}
+                        className="px-5 py-2 rounded-full font-semibold text-sm 
+                          text-white bg-gradient-to-r from-primary/70 to-secondary/70 
+                          border border-white/40 backdrop-blur-md 
+                          shadow-md hover:from-primary hover:to-secondary 
+                          hover:shadow-lg transition-all"
                       >
                         View Details
                       </motion.button>
@@ -184,42 +184,49 @@ const FeaturedPackages = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
+          {/* Navigation */}
           {!showAll && (
             <>
               {currentIndex > 0 && (
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 hidden lg:flex z-20 bg-background/70 backdrop-blur border-primary/30 hover:bg-primary/10"
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   onClick={prevSlide}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 
+                    hidden lg:flex items-center justify-center w-10 h-10 
+                    rounded-full border border-white/50 bg-gradient-to-r from-primary/40 to-secondary/40 
+                    backdrop-blur-md shadow-md hover:from-primary hover:to-secondary 
+                    text-white transition-all"
                 >
-                  <ChevronLeft className="w-6 h-6 text-primary" />
-                </Button>
+                  <ChevronLeft className="w-5 h-5" />
+                </motion.button>
               )}
-
               {currentIndex < maxIndex && (
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 hidden lg:flex z-20 bg-background/70 backdrop-blur border-primary/30 hover:bg-primary/10"
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   onClick={nextSlide}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 
+                    hidden lg:flex items-center justify-center w-10 h-10 
+                    rounded-full border border-white/50 bg-gradient-to-r from-primary/40 to-secondary/40 
+                    backdrop-blur-md shadow-md hover:from-primary hover:to-secondary 
+                    text-white transition-all"
                 >
-                  <ChevronRight className="w-6 h-6 text-primary" />
-                </Button>
+                  <ChevronRight className="w-5 h-5" />
+                </motion.button>
               )}
             </>
           )}
         </div>
 
-        {/* Show More / Less Button */}
+        {/* Show More */}
         {packages.length > itemsPerPage && (
           <div className="flex justify-center mt-10">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 rounded-full text-white font-semibold 
-                bg-gradient-to-r from-primary to-secondary 
-                shadow-lg hover:shadow-xl transition-all duration-300"
+              whileTap={{ scale: 0.97 }}
+              className="px-8 py-2.5 rounded-full font-semibold text-sm md:text-base 
+                text-white bg-gradient-to-r from-primary/60 to-secondary/60 
+                border border-white/40 backdrop-blur-md shadow-md 
+                hover:from-primary hover:to-secondary hover:shadow-lg transition-all"
               onClick={() => setShowAll((prev) => !prev)}
             >
               {showAll ? "Show Less" : "Show More"}

@@ -33,7 +33,6 @@ const AdvertCarousel = () => {
     },
   ];
 
-  // Auto-slide every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % adverts.length);
@@ -46,13 +45,16 @@ const AdvertCarousel = () => {
     setCurrent((prev) => (prev - 1 + adverts.length) % adverts.length);
 
   return (
-    <section className="relative py-10 bg-background/50">
+    <section className="relative py-10 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
-          <span className="text-primary">Exclusive</span> Offers Just for You
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
+            Exclusive
+          </span>{" "}
+          Offers Just for You
         </h2>
 
-        <div className="relative overflow-hidden rounded-xl shadow-md max-w-3xl mx-auto">
+        <div className="relative overflow-hidden rounded-2xl max-w-2xl mx-auto shadow-[0_8px_25px_rgba(0,0,0,0.05)]">
           <AnimatePresence mode="wait">
             <motion.div
               key={adverts[current].id}
@@ -62,24 +64,32 @@ const AdvertCarousel = () => {
               transition={{ duration: 0.5 }}
               className="relative h-[220px] md:h-[280px]"
             >
+              {/* Background Image */}
               <img
                 src={adverts[current].image}
                 alt={adverts[current].title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
 
-              <div className="absolute bottom-3 left-0 right-0 px-5 text-white text-center">
-                <h3 className="text-lg md:text-xl font-semibold mb-1">
+              {/* Light gradient only at bottom for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+              {/* Content — clean & readable */}
+              <div className="absolute bottom-4 left-0 right-0 px-4 sm:px-6 text-center text-white drop-shadow-lg">
+                <h3 className="text-lg font-semibold mb-1">
                   {adverts[current].title}
                 </h3>
-                <p className="text-xs md:text-sm opacity-90 mb-3">
+                <p className="text-xs md:text-sm opacity-95 mb-3">
                   {adverts[current].desc}
                 </p>
+
+                {/* Brand gradient button */}
                 <Button
                   asChild
                   size="sm"
-                  className="bg-gradient-to-r from-primary to-secondary text-white text-xs px-4 py-1.5 hover:scale-105 transition-transform"
+                  className="text-xs font-semibold px-5 py-1.5 rounded-full shadow-md border border-white/20
+                    bg-gradient-to-r from-primary to-secondary text-white 
+                    hover:opacity-90 hover:scale-105 transition-all"
                 >
                   <a href={adverts[current].link}>Learn More</a>
                 </Button>
@@ -87,35 +97,34 @@ const AdvertCarousel = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
+          {/* Navigation Arrows — minimal, subtle */}
           <button
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/30 hover:bg-black/50 font-semibold 
-                bg-gradient-to-r from-primary to-secondary 
-                shadow-lg text-white transition"
+            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full 
+              bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/30 hover:bg-black/50 font-semibold 
-                bg-gradient-to-r from-primary to-secondary 
-                shadow-lg text-white transition"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full 
+              bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex justify-center gap-2 mt-4">
+        <div className="flex justify-center gap-2 mt-5">
           {adverts.map((_, i) => (
-            <div
+            <motion.div
               key={i}
               onClick={() => setCurrent(i)}
-              className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all ${
+              whileHover={{ scale: 1.15 }}
+              className={`h-2.5 rounded-full cursor-pointer transition-all ${
                 current === i
-                  ? "bg-primary scale-110"
-                  : "bg-muted-foreground/40 hover:bg-primary/60"
+                  ? "w-6 bg-gradient-to-r from-primary to-secondary"
+                  : "w-2.5 bg-gray-300/60"
               }`}
             />
           ))}

@@ -1,85 +1,3 @@
-// import {
-//   Building2,
-//   Plane,
-//   MessageCircle,
-//   FileText,
-//   GraduationCap,
-//   Globe,
-// } from "lucide-react";
-// import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-
-// const WhatWeOffer = () => {
-//   const offerings = [
-//     {
-//       title: "Tourism",
-//       description:
-//         "Curated travel experiences to exotic destinations worldwide",
-//       icon: Globe,
-//     },
-//     {
-//       title: "Aviation Consultancy",
-//       description: "Expert guidance on aviation industry best practices",
-//       icon: Plane,
-//     },
-//     {
-//       title: "Travel Consultations",
-//       description: "Personalized advice for your perfect journey",
-//       icon: MessageCircle,
-//     },
-//     {
-//       title: "Documentation",
-//       description: "Complete assistance with travel documents and requirements",
-//       icon: FileText,
-//     },
-//     {
-//       title: "Study Abroad",
-//       description:
-//         "Educational opportunities in prestigious institutions worldwide",
-//       icon: GraduationCap,
-//     },
-//     {
-//       title: "Corporate Travel",
-//       description: "Streamlined business travel solutions for companies",
-//       icon: Building2,
-//     },
-//   ];
-
-//   return (
-//     <section className="py-16">
-//       <div className="container mx-auto px-4">
-//         <div className="text-center mb-12">
-//           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-//             What We Offer
-//           </h2>
-//           <p className="text-muted-foreground max-w-2xl mx-auto">
-//             Comprehensive travel solutions tailored to your needs
-//           </p>
-//         </div>
-
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//           {offerings.map((offering, index) => (
-//             <Card
-//               key={index}
-//               className="shadow-card hover:shadow-elevated transition-all duration-300"
-//             >
-//               <CardHeader>
-//                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-//                   <offering.icon className="w-6 h-6 text-primary" />
-//                 </div>
-//                 <CardTitle className="text-xl">{offering.title}</CardTitle>
-//               </CardHeader>
-//               <CardContent>
-//                 <p className="text-muted-foreground">{offering.description}</p>
-//               </CardContent>
-//             </Card>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default WhatWeOffer;
 import { motion } from "framer-motion";
 import type { Swiper as SwiperClass } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -125,8 +43,8 @@ const WhatWeOffer = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30 relative">
-      <div className="container mx-auto px-4 text-center">
+    <section className="py-20 bg-muted/30 relative overflow-hidden">
+      <div className="container mx-auto px-4 text-center relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           What We Offer
         </h2>
@@ -154,7 +72,7 @@ const WhatWeOffer = () => {
             <SwiperSlide key={index}>
               <motion.div
                 whileHover={{ scale: 1.04 }}
-                className="relative h-[280px] w-[95%] mx-auto rounded-xl overflow-hidden group shadow-lg"
+                className="relative h-[280px] w-[95%] mx-auto rounded-2xl overflow-hidden group shadow-lg"
               >
                 {/* Background image */}
                 <motion.div
@@ -177,7 +95,16 @@ const WhatWeOffer = () => {
                       Discover excellence in travel and hospitality through our
                       bespoke services.
                     </p>
-                    <button className="px-3 py-1.5  bg-gradient-to-r from-primary to-secondary  rounded-full text-xs font-semibold shadow-lg">
+                    {/* Glass + Brand Gradient Button */}
+                    <button
+                      className="px-4 py-1.5 text-xs font-semibold rounded-full
+                        border border-white/30 
+                        bg-gradient-to-r from-primary/60 to-secondary/60 
+                        backdrop-blur-md text-white/90 
+                        shadow-md hover:from-primary hover:to-secondary 
+                        hover:shadow-lg hover:scale-105 
+                        transition-all duration-300"
+                    >
                       Learn More
                     </button>
                   </motion.div>
@@ -188,21 +115,32 @@ const WhatWeOffer = () => {
         </Swiper>
 
         {/* Navigation buttons */}
-        <div className="flex justify-center gap-4 mt-2">
+        <div className="flex justify-center gap-4 mt-4">
           <button
             onClick={() => swiperRef.current?.slidePrev()}
-            className="px-4 py-2 rounded-full text-white  bg-gradient-to-r from-primary to-secondary  transition"
+            className="px-4 py-2 rounded-full text-sm font-semibold text-white 
+              bg-gradient-to-r from-primary to-secondary 
+              shadow-md hover:shadow-lg hover:scale-105 transition-all"
           >
             Prev
           </button>
           <button
             onClick={() => swiperRef.current?.slideNext()}
-            className="px-4 py-2 rounded-full  text-white bg-gradient-to-r from-primary to-secondary transition"
+            className="px-4 py-2 rounded-full text-sm font-semibold text-white 
+              bg-gradient-to-r from-primary to-secondary 
+              shadow-md hover:shadow-lg hover:scale-105 transition-all"
           >
             Next
           </button>
         </div>
       </div>
+
+      {/* Optional soft background glow for depth */}
+      <motion.div
+        className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 blur-3xl rounded-full"
+        animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.1, 1] }}
+        transition={{ repeat: Infinity, duration: 8 }}
+      />
     </section>
   );
 };

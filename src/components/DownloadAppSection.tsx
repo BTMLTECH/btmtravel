@@ -1,88 +1,82 @@
 import { motion } from "framer-motion";
-import { Download, Smartphone, Sparkles } from "lucide-react";
-import appPreview from "@/assets/app-preview.png"; // You can replace this with your app mockup
-import playBadge from "@/assets/google-play-badge.png";
-import appStoreBadge from "@/assets/app-store-badge.png";
+import { Sparkles } from "lucide-react";
+import appPreview from "@/assets/app.png";
 
 const DownloadAppSection = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-b from-background via-background/80 to-muted overflow-hidden">
-      {/* Decorative background glow */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <section className="py-12 md:py-16 bg-gray-50 relative">
+      {/* Decorative floating circles */}
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          className="absolute -top-32 left-1/2 w-[600px] h-[600px] rounded-full bg-primary/20 blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.5, 0.7, 0.5],
-          }}
+          className="absolute -top-40 -left-40 w-72 h-72 rounded-full bg-primary/10 blur-3xl"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ repeat: Infinity, duration: 6 }}
+        />
+        <motion.div
+          className="absolute -bottom-32 -right-32 w-64 h-64 rounded-full bg-secondary/10 blur-3xl"
+          animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ repeat: Infinity, duration: 7, delay: 1 }}
         />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-20">
-          {/* Left side — App preview */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="w-full md:w-1/2 flex justify-center"
-          >
-            <img
-              src={appPreview}
-              alt="BTM App Preview"
-              className="w-3/4 md:w-[70%] max-w-sm drop-shadow-2xl rounded-3xl"
-            />
-          </motion.div>
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="max-w-md mx-auto bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-6 flex flex-col items-center text-center"
+        >
+          {/* App Image */}
+          <img
+            src={appPreview}
+            alt="BTM App Preview"
+            className="w-3/4 md:w-2/3 rounded-2xl shadow-lg mb-6"
+          />
 
-          {/* Right side — Text & buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="w-full md:w-1/2 text-center md:text-left"
-          >
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full mb-4 text-sm font-medium">
-              <Sparkles className="w-4 h-4" />
-              Introducing Our Mobile App
-            </div>
+          {/* Highlight Badge */}
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1 rounded-full mb-4 text-sm font-medium">
+            <Sparkles className="w-4 h-4" />
+            Introducing Our Mobile App
+          </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x">
-              Travel Smarter with the BTM App
-            </h2>
+          {/* Heading */}
+          <h2 className="text-2xl md:text-3xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
+            Travel Smarter with the BTM App
+          </h2>
 
-            <p className="text-muted-foreground/90 max-w-lg mx-auto md:mx-0 mb-8">
-              Book flights, hotels, and exclusive tours with just a few taps.
-              Manage your trips, earn rewards, and explore new destinations
-              anytime, anywhere.
-            </p>
+          {/* Description */}
+          <p className="text-gray-700 text-sm md:text-base mb-6">
+            Book flights, hotels, and exclusive tours with just a few taps.
+            Manage your trips, earn rewards, and explore new destinations
+            anytime, anywhere.
+          </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-lg shadow-primary/30 hover:scale-[1.02] transition-all"
-              >
-                <Download className="w-4 h-4" />
-                Download Now
-              </a>
-
-              <div className="flex items-center justify-center sm:justify-start gap-4">
-                <img
-                  src={playBadge}
-                  alt="Google Play"
-                  className="h-12 cursor-pointer hover:scale-105 transition-transform"
-                />
-                <img
-                  src={appStoreBadge}
-                  alt="App Store"
-                  className="h-12 cursor-pointer hover:scale-105 transition-transform"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          {/* Glass-style Download Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm justify-center">
+            <a
+              href="#"
+              className="flex-1 px-4 py-2 rounded-full 
+               bg-gradient-to-r from-primary to-secondary 
+               text-white font-semibold text-sm text-center 
+               shadow-md border border-white/20 
+               hover:shadow-lg hover:scale-105 
+               transition-all duration-300"
+            >
+              Download for iOS
+            </a>
+            <a
+              href="#"
+              className="flex-1 px-4 py-2 rounded-full 
+               bg-gradient-to-r from-secondary to-primary 
+               text-white font-semibold text-sm text-center 
+               shadow-md border border-white/20 
+               hover:shadow-lg hover:scale-105 
+               transition-all duration-300"
+            >
+              Download for Android
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

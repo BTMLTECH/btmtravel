@@ -21,7 +21,8 @@ const HeroSection = () => {
           alt="Luxury travel destination"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/95 backdrop-blur-[3px]" />
+        {/* Softer overlay – no blur, just gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/90" />
       </div>
 
       {/* Hero Content */}
@@ -70,9 +71,9 @@ const HeroSection = () => {
           <div
             className="
               max-w-md sm:max-w-4xl mx-auto
-              bg-card/90 backdrop-blur-xl
-              rounded-2xl shadow-xl p-4 sm:p-6
-              border border-border/30
+              bg-white/95 border border-primary/10
+              rounded-2xl p-4 sm:p-6
+              transition-all
             "
           >
             <Tabs defaultValue="flight" className="w-full">
@@ -81,7 +82,7 @@ const HeroSection = () => {
               </TabsContent>
 
               <TabsContent value="stays">
-                <div className="bg-card p-6 sm:p-8 rounded-lg shadow-card text-center">
+                <div className="bg-white border border-primary/10 p-6 sm:p-8 rounded-xl text-center">
                   <p className="text-muted-foreground">
                     Stays booking coming soon...
                   </p>
@@ -89,7 +90,7 @@ const HeroSection = () => {
               </TabsContent>
 
               <TabsContent value="packages">
-                <div className="bg-card p-6 sm:p-8 rounded-lg shadow-card text-center">
+                <div className="bg-white border border-primary/10 p-6 sm:p-8 rounded-xl text-center">
                   <p className="text-muted-foreground">
                     Package booking coming soon...
                   </p>
@@ -97,7 +98,7 @@ const HeroSection = () => {
               </TabsContent>
 
               <TabsContent value="tour">
-                <div className="bg-card p-6 sm:p-8 rounded-lg shadow-card text-center">
+                <div className="bg-white border border-primary/10 p-6 sm:p-8 rounded-xl text-center">
                   <p className="text-muted-foreground">
                     Tour booking coming soon...
                   </p>
