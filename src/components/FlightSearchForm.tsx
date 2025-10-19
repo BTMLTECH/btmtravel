@@ -88,7 +88,7 @@ const SearchPanel = () => {
     routes[routes.length - 1].to.trim() !== "";
 
   return (
-    <div className="bg-white p-4 sm:p-6 rounded-2xl border border-primary/10 transition-all">
+    <div className="bg-white p-4 sm:p-6 rounded-2xl border-2 border-brand transition-all">
       <Tabs value={tab} onValueChange={setTab} className="w-full">
         {/* Tabs Header */}
         <TabsList className="grid grid-cols-2 sm:grid-cols-4 bg-gray-100 mb-6 rounded-xl">

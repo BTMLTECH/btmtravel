@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Tabs, TabsContent } from "./ui/tabs";
 import FlightSearchForm from "./FlightSearchForm";
-import heroImage from "@/assets/hero-beach.jpg";
+import jumboImage from "@/assets/jumbo-image.webp";
 
 const HeroSection = () => {
   return (
@@ -14,18 +14,26 @@ const HeroSection = () => {
         pt-24 md:pt-0
       "
     >
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
+      {/* 🌅 Animated Background Image with Parallax Drift */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.img
+          src={jumboImage}
           alt="Luxury travel destination"
           className="w-full h-full object-cover object-center"
+          // Subtle parallax drift effect
+          initial={{ scale: 1.1, x: -30, y: -10 }}
+          animate={{ scale: 1.1, x: 30, y: 10 }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+          }}
         />
-        {/* Softer overlay – no blur, just gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/90" />
       </div>
 
-      {/* Hero Content */}
+      {/* ✨ Hero Content */}
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-20 text-center">
         {/* Headline */}
         <motion.div
